@@ -294,7 +294,6 @@ public class MainForm extends JFrame implements Form {
 			this.unzip7zip(Paths.get(_dataDir, _sample+".zip"));
 			this.log("    Gathering information from text file...");
 			this.readAndMakeSetupFile();
-			//Java .OUT Extraction and Filtering
 			this.log("    Java .OUT Extraction and Filtering...");
 			this.extractOut();
 			this.log("    Logistic model setup...");
@@ -397,7 +396,7 @@ public class MainForm extends JFrame implements Form {
 	    }
 	}
 	
-	//jmb: deprecated, use unzip7zip instead
+	// deprecated--use unzip7zip instead
 	private void unzip(Path file) throws IOException {
 		this.pause("Unzipping file");
 		ZipFile zipFile = new ZipFile(file.toString());
@@ -579,7 +578,7 @@ public class MainForm extends JFrame implements Form {
 		else model = "seqeust";
 		Path logisticFile = Paths.get(_params.getGlobalParam("LOADER.LogisticModel", "C:\\temp\\RLogisticScore"), "reduced.RData."+model);
 		Path target = Paths.get(_params.getGlobalParam("LOADER.LogisticModel", "C:\\temp\\RLogisticScore"), "reduced.RData");
-		this.log("Moving " + Paths.get(_params.getGlobalParam("LOADER.LogisticModel", "C:\\temp\\RLogisticScore"), "reduced.RData."+model).toString() + " to " + Paths.get(_params.getGlobalParam("LOADER.LogisticModel", "C:\\temp\\RLogisticScore"), "reduced.RData").toString()); //jmb
+		this.log("Moving " + Paths.get(_params.getGlobalParam("LOADER.LogisticModel", "C:\\temp\\RLogisticScore"), "reduced.RData."+model).toString() + " to " + Paths.get(_params.getGlobalParam("LOADER.LogisticModel", "C:\\temp\\RLogisticScore"), "reduced.RData").toString());
 		try {
 			Files.copy(logisticFile, target, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
@@ -604,9 +603,11 @@ public class MainForm extends JFrame implements Form {
 			Path outDir = Paths.get(tempDir.toString(), "out");
 //			Path[] splitDirs = new Path[_cores];
 			if (_quant) {
-				// jmb: commented code below is a deprecated routine to move
-				//      files first for parallel processing using antiquated 
-				//      vb quantitation software  
+				
+				// commented code block below is to move quant input 
+				// files to separate folders for parallel processing
+				// via the ancient and deprecated VB quant program.
+				
 //				Path splitOuts = Paths.get(tempDir.toString(), "splitouts");
 //				this.log("splitOuts " + splitOuts);
 //				this.deleteFiles(splitOuts);
@@ -621,8 +622,8 @@ public class MainForm extends JFrame implements Form {
 //					Files.copy(outFile, Paths.get(splitDirs[k].toString(), outFile.toString().substring(outFile.toString().lastIndexOf(_sep)))); //add outfile name
 //					j++; k++;
 //				}
-//				outFiles.close();
-//				outFiles = null;
+//				outFiles.close(); //jmb
+//				outFiles = null; //jmb
 				//Do peak calculations
 				if (Files.exists(raw)) {
 					this.log("        Peak Calculations...");
@@ -682,7 +683,7 @@ public class MainForm extends JFrame implements Form {
 					Path silacDir = Paths.get(tempDir.toString(), "silac");
 					//Process[] quantPID = new Process[_cores];
 					//for (int i=0; i<_cores; i++) {
-						//cmd = Paths.get(_appPath, "AQSILAC.exe").toString()+" $a=TRUE $c="+cfg.toString()+" $r="+raw.toString()+" $s="+splitDirs[i]+" $o="+silacDir.toString()+" $f=off"; //jmb removed 140729. VB quant software is deprecated.
+						//cmd = Paths.get(_appPath, "AQSILAC.exe").toString()+" $a=TRUE $c="+cfg.toString()+" $r="+raw.toString()+" $s="+splitDirs[i]+" $o="+silacDir.toString()+" $f=off"; // jmb removed 140729 -- VB quant software is deprecated
 					ProcessBuilder pb = new ProcessBuilder("Rscript", Paths.get(_params.getGlobalParam("LOADER.AutoFillFolder", "\\\\proteome\\Filemaker Associated Software\\Quantitation"), "AQSILAC.R").toString(), cfg.toString(), raw.toString(), outDir.toString(), silacDir.toString(), msconv.toString()); //change raw to mzXML path, splitDirs is outfile directory (E:/Temp/splitouts)
 					pb.redirectErrorStream(true);
 					Process p = pb.inheritIO().start();
@@ -845,14 +846,14 @@ public class MainForm extends JFrame implements Form {
 			Robot robot = new Robot();
 			WinDef.HWND window = null;
 			int i = 0;
-			/*while (window == null) {
+			/*while (window == null) { jmb commented out 131008
 				window = User32.INSTANCE.FindWindow("QualBrowser.exe", "Thermo Xcalibur Qual Browser");
 				if (i++ == 20) break;
 			}
 			User32.INSTANCE.SetForegroundWindow(window);
 			User32.INSTANCE.SetFocus(window);*/
 			Thread.sleep(10000);
-			/*if (!User32.INSTANCE.GetForegroundWindow().equals(window)) {
+			/*if (!User32.INSTANCE.GetForegroundWindow().equals(window)) {	jmb commented out 131008
 				throw new AutoLoadException("getRAWInfo", "QualBrowser window could not be found");
 			}*/
 			this.log("				Retrieving data from Qual Browser");
@@ -925,7 +926,7 @@ public class MainForm extends JFrame implements Form {
 	    	toReturn[4] = _msMethod + " " + dateFormat.format(new Date());
 	    	toReturn[5] = _sample;
 	    	toReturn[6] = msMethod;
-	    	robot = null;		
+	    	robot = null;	
 		}
 		else {
 	    	toReturn[0] = "--MSTune--";
