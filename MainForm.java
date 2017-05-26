@@ -217,8 +217,8 @@ public class MainForm extends JFrame implements Form {
 			else {
 				pout.println("0");
 			}
-			out.flush(); //jmb
-			out.close(); //jmb
+			out.flush();
+			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -291,7 +291,6 @@ public class MainForm extends JFrame implements Form {
 			this.deleteTempFiles();
 			_dataDir = _params.getGlobalParam("LOADER.BaseFolder", "");
 			this.log("    Unzipping data...");
-			//this.unzip(Paths.get(_dataDir, _sample+".zip")); jmb 
 			this.unzip7zip(Paths.get(_dataDir, _sample+".zip"));
 			this.log("    Gathering information from text file...");
 			this.readAndMakeSetupFile();
@@ -306,7 +305,7 @@ public class MainForm extends JFrame implements Form {
 			this.loadFileMaker();
 			this.log("    Deleting files...");
 			this.deleteFiles(Paths.get(_dataDir), _sample);
-			Paths.get(_dataDir, _sample).toFile().delete(); //jmb
+			Paths.get(_dataDir, _sample).toFile().delete();
 			this.log("Finished loading "+_sample);
 			this.updateFinishedSampleList("#");
 			this.setBusy(false);
@@ -398,7 +397,7 @@ public class MainForm extends JFrame implements Form {
 	    }
 	}
 	
-	//jmb deprecated use unzip7zip instead
+	//jmb: deprecated, use unzip7zip instead
 	private void unzip(Path file) throws IOException {
 		this.pause("Unzipping file");
 		ZipFile zipFile = new ZipFile(file.toString());
@@ -409,7 +408,7 @@ public class MainForm extends JFrame implements Form {
 		while(entries.hasMoreElements()) {
 			ZipEntry entry = entries.nextElement();
 			if (entry.isDirectory()) {
-				Files.deleteIfExists(Paths.get(entry.getName()));	//jmb
+				Files.deleteIfExists(Paths.get(entry.getName()));
 				Files.createDirectory(Paths.get(entry.getName()));
 				continue;
 			}
@@ -441,7 +440,7 @@ public class MainForm extends JFrame implements Form {
 		cmd = "\""+_params.getGlobalParam("LOADER.7ziplocation", "C:\\Program Files\\7zip\\7za.exe")+ "\" x -y " + "\""+ file.toString() + "\"" +" -o" + "\""+ targetDir + "\"";
 		ProcessBuilder builder = null;
 		builder = new ProcessBuilder(_params.getGlobalParam("LOADER.7ziplocation", "C:\\Program Files\\7zip\\7za.exe"), "x","-y", "\""+file.toString()+"\"", "-o"+"\""+targetDir.toString()+"\""); //no space between -o switch and outpath. modified to add "-y" switch on 130912 to suppress overwrite prompt
-		System.out.println("7zip command: "+ builder.command()); //jmb
+		System.out.println("7zip command: "+ builder.command());
 		this.log("7zip command: "+ builder.command());
 		List<String> cmdList = builder.command();
 		String cmdPB="";
@@ -507,7 +506,7 @@ public class MainForm extends JFrame implements Form {
 		
 		//Create the setup file
 		Path setupFile = Paths.get(_params.getGlobalParam("LOADER.TempFolder", "C:\\temp"), "setup", "loadParameterSetup.txt");
-		this.log("Setup file: " + setupFile); //jmb
+		this.log("Setup file: " + setupFile);
 		Vector<String> toWrite = new Vector<String>();
 		toWrite.add("--username--"); toWrite.add(_userName);
 		toWrite.add("--filename--"); toWrite.add(_sample);
@@ -595,7 +594,7 @@ public class MainForm extends JFrame implements Form {
 		Path tempDir = Paths.get(_params.getGlobalParam("LOADER.TempFolder", "C:\\temp"));
 		Path msconv = Paths.get(_params.getGlobalParam("LOADER.msconvert", "C:\\Program Files\\ProteoWizard\\msconvert.exe"));
 		int numDTA = Paths.get(tempDir.toString(), "dta").toFile().list().length;
-		this.log("Looking for dtas in " + Paths.get(tempDir.toString(), "dta")); //jmb
+		this.log("Looking for dtas in " + Paths.get(tempDir.toString(), "dta"));
 		if (numDTA > 0) {
 			String cmd = "cmd /C "+Paths.get(_appPath, "PhosLocalization.bat").toString();
 			System.out.println("        "+cmd);
@@ -605,8 +604,11 @@ public class MainForm extends JFrame implements Form {
 			Path outDir = Paths.get(tempDir.toString(), "out");
 //			Path[] splitDirs = new Path[_cores];
 			if (_quant) {
+				// jmb: commented code below is a deprecated routine to move
+				//      files first for parallel processing using antiquated 
+				//      vb quantitation software  
 //				Path splitOuts = Paths.get(tempDir.toString(), "splitouts");
-//				this.log("splitOuts " + splitOuts); //jmb
+//				this.log("splitOuts " + splitOuts);
 //				this.deleteFiles(splitOuts);
 //				for (int i=0; i<_cores; i++) {
 //					splitDirs[i] = Files.createDirectories(Paths.get(splitOuts.toString(), "outsplit"+(i+1)));
@@ -619,8 +621,8 @@ public class MainForm extends JFrame implements Form {
 //					Files.copy(outFile, Paths.get(splitDirs[k].toString(), outFile.toString().substring(outFile.toString().lastIndexOf(_sep)))); //add outfile name
 //					j++; k++;
 //				}
-//				outFiles.close(); //jmb
-//				outFiles = null; //jmb
+//				outFiles.close();
+//				outFiles = null;
 				//Do peak calculations
 				if (Files.exists(raw)) {
 					this.log("        Peak Calculations...");
@@ -650,7 +652,7 @@ public class MainForm extends JFrame implements Form {
 				} 
 			}
 			pPhos.waitFor();
-			pPhos.destroy(); //jmb
+			pPhos.destroy();
 			
 			//SILAC Quant
 			if (Files.exists(cfg) && Files.exists(raw)) {
@@ -680,7 +682,7 @@ public class MainForm extends JFrame implements Form {
 					Path silacDir = Paths.get(tempDir.toString(), "silac");
 					//Process[] quantPID = new Process[_cores];
 					//for (int i=0; i<_cores; i++) {
-						//cmd = Paths.get(_appPath, "AQSILAC.exe").toString()+" $a=TRUE $c="+cfg.toString()+" $r="+raw.toString()+" $s="+splitDirs[i]+" $o="+silacDir.toString()+" $f=off"; //jmb removed 140729
+						//cmd = Paths.get(_appPath, "AQSILAC.exe").toString()+" $a=TRUE $c="+cfg.toString()+" $r="+raw.toString()+" $s="+splitDirs[i]+" $o="+silacDir.toString()+" $f=off"; //jmb removed 140729. VB quant software is deprecated.
 					ProcessBuilder pb = new ProcessBuilder("Rscript", Paths.get(_params.getGlobalParam("LOADER.AutoFillFolder", "\\\\proteome\\Filemaker Associated Software\\Quantitation"), "AQSILAC.R").toString(), cfg.toString(), raw.toString(), outDir.toString(), silacDir.toString(), msconv.toString()); //change raw to mzXML path, splitDirs is outfile directory (E:/Temp/splitouts)
 					pb.redirectErrorStream(true);
 					Process p = pb.inheritIO().start();
@@ -757,7 +759,7 @@ public class MainForm extends JFrame implements Form {
 					break;
 				}
 			}
-			samples = null;	//jmb
+			samples = null;
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -769,7 +771,7 @@ public class MainForm extends JFrame implements Form {
 	 * 
 	 * @param status - String indicating success or failure
 	 */
-	private void updateFinishedSampleList(String status) { //jmb
+	private void updateFinishedSampleList(String status) {
 		try {
 			List<String> samples = Files.readAllLines(Paths.get(_appPath, "finishedSampleList.txt"), Charset.defaultCharset());
 			int i;
@@ -825,7 +827,7 @@ public class MainForm extends JFrame implements Form {
 	}
 	
 	private String[] getRAWInfo() throws IOException, AutoLoadException, InterruptedException, AWTException, HeadlessException, UnsupportedFlavorException {
-		Path rawFile = Paths.get(_dataDir,_sample, _sample+".raw");	//jmb
+		Path rawFile = Paths.get(_dataDir,_sample, _sample+".raw");
 		String msTune = "";
 		String msMethod = "";
 		String[] toReturn = new String[7];
@@ -843,14 +845,14 @@ public class MainForm extends JFrame implements Form {
 			Robot robot = new Robot();
 			WinDef.HWND window = null;
 			int i = 0;
-			/*while (window == null) { jmb commented out 131008
+			/*while (window == null) {
 				window = User32.INSTANCE.FindWindow("QualBrowser.exe", "Thermo Xcalibur Qual Browser");
 				if (i++ == 20) break;
 			}
 			User32.INSTANCE.SetForegroundWindow(window);
 			User32.INSTANCE.SetFocus(window);*/
 			Thread.sleep(10000);
-			/*if (!User32.INSTANCE.GetForegroundWindow().equals(window)) {	jmb commented out 131008
+			/*if (!User32.INSTANCE.GetForegroundWindow().equals(window)) {
 				throw new AutoLoadException("getRAWInfo", "QualBrowser window could not be found");
 			}*/
 			this.log("				Retrieving data from Qual Browser");
@@ -900,7 +902,7 @@ public class MainForm extends JFrame implements Form {
 	    	robot.keyRelease(KeyEvent.VK_CONTROL);
 	    	//Retrieve copied data from clipboard
 	    	msMethod = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
-	    	this.log("				Finished retrieving data from Qual Browser");	//jmb
+	    	this.log("				Finished retrieving data from Qual Browser");
 	    	//Quit Qual Browser
 	    	//Send "alt-f"
 			robot.keyPress(KeyEvent.VK_ALT);
@@ -923,7 +925,7 @@ public class MainForm extends JFrame implements Form {
 	    	toReturn[4] = _msMethod + " " + dateFormat.format(new Date());
 	    	toReturn[5] = _sample;
 	    	toReturn[6] = msMethod;
-	    	robot = null; //jmb		
+	    	robot = null;		
 		}
 		else {
 	    	toReturn[0] = "--MSTune--";
@@ -978,7 +980,7 @@ public class MainForm extends JFrame implements Form {
 					else file.toFile().delete();
 				}
 			}
-			files = null; //jmb
+			files = null;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
