@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<GROUPS creator="Judson Belmont" for="HTAPP" version="1.0">
+    <NOTE> Fields that must be defined in config XML. All ports, IPs, and passwords have been changed to protect the innocent, so this config file will NOT work as written in the Salomon pipeline</NOTE>
+    <GROUP NAME="global">
+        <PARAM isPassword="false" key="SEQUEST" value="sequest">This is the IP address or hostname of the computer running autoSearch.exe</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.Port" value="666">listening port number</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.BaseFolder" value="C:\sequest">where to store search files on this computer?</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.ParamFolder" value="C:\Xcalibur\params">where are the sequest param files on sequest?</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.sequest" value="C:\Cluster\pvm\bin\WIN32\sequest27_master.exe">where is the SEQUEST(R) executable?</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.MascotDaemonFolder" value="C:\Mascot">where is the mascot daemon watch folder on this computer?</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.extract_msn" value="C:\Xcalibur\system\programs\extract_msn.exe">where is the extract_msn for extracting thermo raw files?</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.extract_msn.FTparam" value="-B600.000 -T4500.000 -S0 -G1 -I5 -M0.0050">extract_msn  parameters for high mass accuracy data</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.extract_msn.LTparam" value="-B600.000 -T4500.000 -S0 -G1 -I25 -M1.50">extract_msn  parameters for low mass accuracy data</PARAM>
+        <PARAM isPassword="false" key="Sequest.Params" value="\\sequest\params">shared net location for sequest parameters folder </PARAM>
+        <PARAM isPassword="false" key="Mascot.Params" value="\\sequest\params">shared net location for mascot parameters folder</PARAM>
+        <PARAM isPassword="false" key="Mascot.Results" value="">shared net location for mascot results folders</PARAM>
+        <PARAM isPassword="false" key="Mascot.User" value="superuser">mascot search login name</PARAM>
+        <PARAM isPassword="true" key="Mascot.Passwd" value="NotTelling">mascot search login password</PARAM>
+        <PARAM isPassword="false" key="RAW_BACKUP_PATH" value="\\sequest\Sequest">shared folder that backups raw data from this client on backup server</PARAM>
+        <PARAM isPassword="false" key="SR_BACKUP_PATH" value="\\proteome\Data\Sequest_Data">shared folder that backups search results from this client on backup server</PARAM>
+        <PARAM isPassword="false" key="LOADER" value="loader">This is the IP address or hostname of the computer running autoLoad.exe</PARAM>
+        <PARAM isPassword="false" key="LOADER.Port" value="666">listening port</PARAM>
+        <PARAM isPassword="false" key="LOADER.BaseFolder" value="C:\data">where to store incoming files on this computer?</PARAM>
+        <PARAM isPassword="false" key="LOADER.StatusFolder" value="C:\STATUS">Status folder, no tailing slash!</PARAM>
+        <PARAM isPassword="false" key="LOADER.TempFolder" value="C:\temp">temporary folder during execution. no tailing slash!</PARAM>
+        <PARAM isPassword="false" key="LOADER.XCorrCutoff" value="1.5,2.0,2.5">prefiltering. xcorr cutoff for +1, +2, +3_and_higher, respectively</PARAM>
+        <PARAM isPassword="false" key="LOADER.MascotCutoff" value="20">prefiltering. mascot ion score (MOWSE score) cutoff for all charge state</PARAM>
+        <PARAM isPassword="false" key="LOADER.LogisticModel" value="C:\temp\RLogisticScore">base folder of spectral score main program</PARAM>
+        <PARAM isPassword="false" key="LOADER.QualBrowser" value="C:\xcalibur\system\programs\qualbrowser.exe">path of program to open raw file</PARAM>
+        <PARAM isPassword="false" key="Mail.smtp" value="localhost">smtp server to send email</PARAM>
+        <PARAM isPassword="false" key="Mail.fromAddress" value="artman@qeisdope.org">sender's mail address</PARAM>
+        <PARAM isPassword="false" key="Mail.displayName" value="Salomon Lab - MS Control Center">sender's name</PARAM>
+        <PARAM isPassword="false" key="PeptideDepot.FM.Server" value="proteome">Peptide Depot filemaker database server address</PARAM>
+        <PARAM isPassword="false" key="PeptideDepot.FM.Port" value="666">Peptide Depot filemaker database server port, default 2399</PARAM>
+        <PARAM isPassword="false" key="PeptideDepot.FM.User" value="automation">Peptide Depot filemaker database server username</PARAM>
+        <PARAM isPassword="true" key="PeptideDepot.FM.Passwd" value="NotTelling">Peptide Depot filemaker database server password</PARAM>
+        <PARAM isPassword="false" key="PeptideDepot.FM.DB" value="Peptide%20Depot">Peptide Depot filemaker database name. escape char: space-&gt;%20</PARAM>
+        <PARAM isPassword="false" key="PeptideDepot.MySQL.Server" value="proteome">Peptide Depot MySQL database server</PARAM>
+        <PARAM isPassword="false" key="PeptideDepot.MySQL.Port" value="666">Peptide Depot MySQL database server port, default 3306</PARAM>
+        <PARAM isPassword="false" key="PeptideDepot.MySQL.User" value="automation">Peptide Depot MySQL database server username</PARAM>
+        <PARAM isPassword="true" key="PeptideDepot.MySQL.Passwd" value="NotTelling">Peptide Depot MySQL database server password</PARAM>
+        <PARAM isPassword="false" key="PeptideDepot.MySQL.DB" value="sequest">Peptide Depot MySQL database name</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.UseWinzip" value="true">toggle, use build-in zip or use winzip program? if this param is set to 'true', then the following .WinzipLocation param must be specified accordingly.  this param is usually set to false unless your raw file size is larger than 500M</PARAM>
+        <PARAM isPassword="false" key="LOADER.UseWinzip" value="true">toggle, use build-in zip or use winzip program? if this param is set to 'true', then the following .WinzipLocation param must be specified accordingly.  this param is usually set to false unless your raw file size is larger than 500M</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.WinzipLocation" value="C:\Program Files\WinZip\winzip32">winzip location</PARAM>
+        <PARAM isPassword="false" key="LOADER.WinzipLocation" value="C:\Program Files\WinZip\winzip32">winzip location</PARAM>
+        <PARAM isPassword="false" key="SEQUEST.7zipLocation" value="C:\Program Files\-7zip\7z.exe">jmb added path to 7zip</PARAM>
+        <PARAM isPassword="false" key="LOADER.7zipLocation" value="C:\Program Files\7-zip\7z.exe">jmb added path to 7zip</PARAM>
+        
+		<PARAM isPassword="false" key="LOADER.Root" value="\\loader.biomed.brown.edu\data">----deprecated----   loader's shared net location for incoming data</PARAM>
+    </GROUP>
+    <GROUP NAME="identity">
+        <PARAM isPassword="false" key="THIS_CLIENT_TAG" value="QELS">four-letter code (a-zA-Z0-9_). This variable reflects the identity of clinet computer that initiates database search. If you have multiple computers submitting raw file, set this value accordingly and individually. (This variable must have the same value as client's TAG variable that you will see soon.)</PARAM>
+    </GROUP>
+    <GROUP NAME="client">
+        <PARAM isPassword="false" key="CLIENT_TAG" value="LDer">client's UNIQUE identity, as set previously</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Server" value="proteome.biomed.brown.edu">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Port" value="666">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.User" value="automation">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="true" key="MySQL.InfoDB.Passwd" value="NotTelling">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.DB" value="history">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="ScreenRange" value="0,0,1280,1024">screen capture size: top left coordinate x, y, width, height</PARAM>
+    </GROUP>
+    <GROUP NAME="client">
+        <PARAM isPassword="false" key="CLIENT_TAG" value="sqst">client's UNIQUE identity, as set previously</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Server" value="proteome.biomed.brown.edu">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Port" value="666">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.User" value="automation">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="true" key="MySQL.InfoDB.Passwd" value="NotTelling">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.DB" value="history">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="ScreenRange" value="0,0,1280,1024">screen capture size: top left coordinate x, y, width, height</PARAM>
+    </GROUP>
+    <GROUP NAME="client">
+        <PARAM isPassword="false" key="CLIENT_TAG" value="QELS">client's UNIQUE identity, as set previously</PARAM>
+        <PARAM isPassword="false" key="CLIENT_HOST" value="QELSwin7">hostname for this client computer</PARAM>
+        <PARAM isPassword="false" key="SAMPLE_LIST" value="finishedSampleList-Salomon.txt">This is the name of the file holding the sample names to be sent down the pipeline</PARAM>
+		<PARAM isPassword="false" key="LOCAL_PATH" value="D:\XCalibur\data">folders where raw data files are stored, this parameter is used for generating the file path on the remote backup server</PARAM>
+        <PARAM isPassword="false" key="HPLCGradientFolder" value="C:\Chem32\1\METHODS">HPLC gradient method folder; for instrument control center</PARAM>
+        <PARAM isPassword="false" key="MSMethodFolder" value="C:\Xcalibur\methods\Automated">MS method folder; for instrument control center</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Server" value="proteome">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Port" value="666">MySQL database server port</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.User" value="superuser">MySQL database serveruser</PARAM>
+        <PARAM isPassword="true" key="MySQL.InfoDB.Passwd" value="NotTelling">MySQL database server password</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.DB" value="history">MySQL database server database name</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.ODBCDriver" value="MySQL ODBC 3.51 Driver">MySQL database ODBC driver name</PARAM>
+        <PARAM isPassword="false" key="Pump1_Handler" value="Instrument 1 (online)">Window title of pump 1 control software</PARAM>
+        <PARAM isPassword="false" key="Pump2_Handler" value="Instrument 1 (online)">Window title of pump 2 control software</PARAM>
+        <PARAM isPassword="false" key="MassSpec_Handler" value="Thermo Xcalibur Roadmap">Window title of mass spec control software</PARAM>
+        <PARAM isPassword="false" key="RAW_MIN_SIZE" value="10MB">Minimum required size of RAW files, or queue pauses</PARAM>
+        <PARAM isPassword="false" key="Sample.RP.LCMethod" value="C:\Chem32\1\METHODS\AUTO60SHALLOW.M"> LC method to run reverse phase sample</PARAM>
+        <PARAM isPassword="false" key="Sample.RP.MSMethod" value="C:\Xcalibur\methods\Automated\dd9_auto60shallow_FTMSLTMSMS_2kv.meth">Window title of mass spec control software</PARAM>
+        <PARAM isPassword="false" key="Sample.IMAC.LCMethod" value="C:\Chem32\1\METHODS\AUTO60SHALLOW.M">LC method to run IMAC sample</PARAM>
+        <PARAM isPassword="false" key="Sample.IMAC.MSMethod" value="C:\XCalibur\Methods\Automated\dd_top5_cc_92acq_FTMSLTMSMScss.meth">MS method to run IMAC sample</PARAM>
+        <PARAM isPassword="false" key="Standard.PeakPark.LCMethod" value="C:\Chem32\1\METHODS\AUTO17NR.M">LC method to run standard peak park test</PARAM>
+        <PARAM isPassword="false" key="Standard.PeakPark.MSMethod" value="C:\XCalibur\Methods\Automated\ms_cc_75acq.meth">MS method to run peak park</PARAM>
+        <PARAM isPassword="false" key="Standard.RP.LCMethod" value="C:\Chem32\1\METHODS\AUTO17NR.M">LC method to run standard reverse phase test</PARAM>
+        <PARAM isPassword="false" key="Standard.RP.MSMethod" value="C:\Xcalibur\methods\Automated\dd1_17min_FTMSLTMSMS.meth">MS method to run standard reverse phase test</PARAM>
+        <PARAM isPassword="false" key="Standard.Shutdown.LCMethod" value="C:\Chem32\1\METHODS\_ALLOFF.M">LC method to run standard shutdown</PARAM>
+        <PARAM isPassword="false" key="Standard.Shutdown.MSMethod" value="C:\XCalibur\Methods\Automated\shutdown.meth">MS method to run standard shutdown</PARAM>
+        <PARAM isPassword="false" key="Standard.Empty.VialPosition" value="p2e8">empty vial position</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.Server" value="proteome.biomed.brown.edu">filemaker server for sample queue</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.Port" value="666">filemaker server port; default...</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.User" value="automation">filemaker server username</PARAM>
+        <PARAM isPassword="true" key="FM.SampleQueue.Passwd" value="NotTelling">filemaker server password</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.DB" value="sample%20queue">filemaker database name. replace white space with %20</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.ODBCDriver" value="FileMaker ODBC">filemaker server 11 odbc driver name</PARAM>
+        <PARAM isPassword="false" key="---FM.SampleQueue.ODBCDriver" value="DataDirect 32-BIT SequeLink 5.5">filemaker server 10 or older, odbc driver name</PARAM>
+        <PARAM isPassword="false" key="Method.SavedLocation" value="C:\Chem32\1\METHODS">when printing and saving method files, this is the location where those files go</PARAM>
+        <PARAM isPassword="false" key="Seqeuence.SavedLocation" value="C:\Chem32\1\SEQUENCE">when printing and saving sequence files, this is the location where those files go</PARAM>
+        <PARAM isPassword="false" key="SMS_Emergency" value="art@drsalomon.com">emergency sms</PARAM>
+        <PARAM isPassword="false" key="Default.NotifySound" value="C:\WINDOWS\Media\notify.wav">play sound</PARAM>
+        <PARAM isPassword="false" key="Pump.StatusFolder" value="C:\AutomationControl\STATUS">folder that contains pump status code; no tailing slash!</PARAM>
+        <PARAM isPassword="false" key="QualBrowser.Path" value="C:\xcalibur\system\programs\qualbrowser.exe">program to open raw file</PARAM>
+        <PARAM isPassword="false" key="PumpComm.local.IP" value="127.0.0.1">local IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.local.Port" value="666">local port, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.p1.IP" value="127.0.0.1">pump1 IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.p2.IP" value="127.0.0.1">pump2 IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="ScreenRange" value="-1280,0,2960,1024">screen capture size: top left coordinate x, y, width, height</PARAM>
+        <PARAM isPassword="false" key="REMOTE_PATH" value="\\QELSwin7\data">----deprecated----   name of shared folder seen by other computer, more specifically, the computer running 'autosearch.exe'.</PARAM>
+    </GROUP>
+    <GROUP NAME="client">
+        <PARAM isPassword="false" key="CLIENT_TAG" value="core">client's UNIQUE identity, as set previously</PARAM>
+        <PARAM isPassword="false" key="CLIENT_HOST" value="ltft2">hostname for this client computer</PARAM>
+        <PARAM isPassword="false" key="SAMPLE_LIST" value="finishedSampleList-Salomon.txt">This is the name of the file holding the sample names to be sent down the pipeline</PARAM>
+        <PARAM isPassword="false" key="LOCAL_PATH" value="F:\Xcalibur\data">folders where raw data files are stored, this parameter is used for generating the file path on the remote backup server</PARAM>
+        <PARAM isPassword="false" key="HPLCGradientFolder" value="C:\Chem32\1\METHODS">HPLC gradient method folder; for instrument control center</PARAM>
+        <PARAM isPassword="false" key="MSMethodFolder" value="C:\Thermo\Instruments\LTQ\methods\Automated">MS method folder; for instrument control center</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Server" value="proteome.biomed.brown.edu">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Port" value="666">MySQL database server port</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.User" value="superuser">MySQL database serveruser</PARAM>
+        <PARAM isPassword="true" key="MySQL.InfoDB.Passwd" value="NotTelling">MySQL database server password</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.DB" value="history">MySQL database server database name</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.ODBCDriver" value="MySQL ODBC 3.51 Driver">MySQL database ODBC driver name</PARAM>
+        <PARAM isPassword="false" key="Pump1_Handler" value="Instrument 1 (online)">Window title of pump 1 control software</PARAM>
+        <PARAM isPassword="false" key="Pump2_Handler" value="Instrument 1 (online)">Window title of pump 2 control software</PARAM>
+        <PARAM isPassword="false" key="MassSpec_Handler" value="Thermo Xcalibur Roadmap">Window title of mass spec control software</PARAM>
+        <PARAM isPassword="false" key="RAW_MIN_SIZE" value="20MB">Minimum required size of RAW files, or queue pauses</PARAM>
+        <PARAM isPassword="false" key="Sample.RP.LCMethod" value="C:\Chem32\1\METHODS\AUTO60SHALLOW.M">LC method to run reverse phase sample</PARAM>
+        <PARAM isPassword="false" key="Sample.RP.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\dd10_auto60shallow_FTMSLTMSMS.meth">MS method to run reverse phase sample</PARAM>
+        <PARAM isPassword="false" key="Sample.IMAC.LCMethod" value="C:\Chem32\1\METHODS\A_AUTO30RP.M">LC method to run IMAC sample</PARAM>
+        <PARAM isPassword="false" key="Sample.IMAC.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\dd10_auto60shallow_FTMSLTMSMS.meth">MS method to run IMAC sample</PARAM>
+        <PARAM isPassword="false" key="Standard.PeakPark.LCMethod" value="C:\Chem32\1\METHODS\A_AUTO30NR.M">LC method to run standard peak park test</PARAM>
+        <PARAM isPassword="false" key="Standard.PeakPark.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\FTMS_50min.meth">MS method to run peak park</PARAM>
+        <PARAM isPassword="false" key="Standard.RP.LCMethod" value="C:\Chem32\1\METHODS\A_AUTO17NR.M">LC method to run standard reverse phase test</PARAM>
+        <PARAM isPassword="false" key="Standard.RP.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\dd1_37min_FTMSLTMSMS.meth">MS method to run standard reverse phase test</PARAM>
+        <PARAM isPassword="false" key="Standard.Shutdown.LCMethod" value="">LC method to run standard shutdown</PARAM>
+        <PARAM isPassword="false" key="Standard.Shutdown.MSMethod" value="C:\XCalibur\Methods\Automated\shutdown.meth">MS method to run standard shutdown</PARAM>
+        <PARAM isPassword="false" key="Standard.Empty.VialPosition" value="p1e8">empty vial position</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.Server" value="proteome.biomed.brown.edu">filemaker server for sample queue</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.Port" value="2399">filemaker server port; default 2399</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.User" value="automation">filemaker server username</PARAM>
+        <PARAM isPassword="true" key="FM.SampleQueue.Passwd" value="NotTelling">filemaker server password</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.DB" value="sample%20queue">filemaker database name. replace white space with %20</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.ODBCDriver" value="FileMaker ODBC">filemaker server 11 odbc driver name</PARAM>
+        <PARAM isPassword="false" key="--FM.SampleQueue.ODBCDriver" value="DataDirect 32-BIT SequeLink 5.5">filemaker server 10 or older, odbc driver name</PARAM>
+        <PARAM isPassword="false" key="Method.SavedLocation" value="C:\Chem32\1\METHODS">when printing and saving method files, this is the location where those files go</PARAM>
+        <PARAM isPassword="false" key="Seqeuence.SavedLocation" value="C:\Chem32\1\SEQUENCE">when printing and saving sequence files, this is the location where those files go</PARAM>
+        <PARAM isPassword="false" key="SMS_Emergency" value="james_clifton@brown.edu">emergency sms</PARAM>
+        <PARAM isPassword="false" key="Default.NotifySound" value="C:\WINDOWS\Media\notify.wav">play sound</PARAM>
+        <PARAM isPassword="false" key="Pump.StatusFolder" value="C:\STATUS">folder that contains pump status code; no tailing slash!</PARAM>
+        <PARAM isPassword="false" key="QualBrowser.Path" value="C:\xcalibur\system\programs\QualBrowser.exe">program to open raw file</PARAM>
+        <PARAM isPassword="false" key="PumpComm.local.IP" value="127.0.0.1">local IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.local.Port" value="9100">local port, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.p1.IP" value="127.0.0.1">pump1 IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.p2.IP" value="">pump2 IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="ScreenRange" value="-1280,0,3200,1200">screen capture size: top left coordinate x, y, width, height</PARAM>
+        <PARAM isPassword="false" key="REMOTE_PATH" value="\\ltft2.biomed.brown.edu\Data2">----deprecated----   name of shared folder seen by other computer, more specifically, the computer running 'autosearch.exe'.</PARAM>
+    </GROUP>
+<GROUP NAME="client">
+        <PARAM isPassword="false" key="CLIENT_TAG" value="qexa">client's UNIQUE identity, as set previously</PARAM>
+        <PARAM isPassword="false" key="CLIENT_HOST" value="ltft2.biomed.brown.edu">hostname for this client computer</PARAM>
+        <PARAM isPassword="false" key="SAMPLE_LIST" value="finishedSampleList-Salomon.txt">This is the name of the file holding the sample names to be sent down the pipeline</PARAM>
+        <PARAM isPassword="false" key="LOCAL_PATH" value="F:\Xcalibur\data">folders where raw data files are stored, this parameter is used for generating the file path on the remote backup server</PARAM>
+        <PARAM isPassword="false" key="HPLCGradientFolder" value="C:\Chem32\1\METHODS">HPLC gradient method folder; for instrument control center</PARAM>
+        <PARAM isPassword="false" key="MSMethodFolder" value="C:\Thermo\Instruments\LTQ\methods\Automated">MS method folder; for instrument control center</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Server" value="proteome.biomed.brown.edu">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Port" value="666">MySQL database server port</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.User" value="automation">MySQL database serveruser</PARAM>
+        <PARAM isPassword="true" key="MySQL.InfoDB.Passwd" value="NotTelling">MySQL database server password</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.DB" value="history">MySQL database server database name</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.ODBCDriver" value="MySQL ODBC 3.51 Driver">MySQL database ODBC driver name</PARAM>
+        <PARAM isPassword="false" key="Pump1_Handler" value="Instrument 1 (online)">Window title of pump 1 control software</PARAM>
+        <PARAM isPassword="false" key="Pump2_Handler" value="Instrument 1 (online)">Window title of pump 2 control software</PARAM>
+        <PARAM isPassword="false" key="MassSpec_Handler" value="Thermo Xcalibur Roadmap">Window title of mass spec control software</PARAM>
+        <PARAM isPassword="false" key="RAW_MIN_SIZE" value="20MB">Minimum required size of RAW files, or queue pauses</PARAM>
+        <PARAM isPassword="false" key="Sample.RP.LCMethod" value="C:\Chem32\1\METHODS\AUTO60SHALLOW.M">LC method to run reverse phase sample</PARAM>
+        <PARAM isPassword="false" key="Sample.RP.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\dd10_auto60shallow_FTMSLTMSMS.meth">MS method to run reverse phase sample</PARAM>
+        <PARAM isPassword="false" key="Sample.IMAC.LCMethod" value="C:\Chem32\1\METHODS\A_AUTO30RP.M">LC method to run IMAC sample</PARAM>
+        <PARAM isPassword="false" key="Sample.IMAC.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\dd10_auto60shallow_FTMSLTMSMS.meth">MS method to run IMAC sample</PARAM>
+        <PARAM isPassword="false" key="Standard.PeakPark.LCMethod" value="C:\Chem32\1\METHODS\A_AUTO30NR.M">LC method to run standard peak park test</PARAM>
+        <PARAM isPassword="false" key="Standard.PeakPark.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\FTMS_50min.meth">MS method to run peak park</PARAM>
+        <PARAM isPassword="false" key="Standard.RP.LCMethod" value="C:\Chem32\1\METHODS\A_AUTO17NR.M">LC method to run standard reverse phase test</PARAM>
+        <PARAM isPassword="false" key="Standard.RP.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\dd1_37min_FTMSLTMSMS.meth">MS method to run standard reverse phase test</PARAM>
+        <PARAM isPassword="false" key="Standard.Shutdown.LCMethod" value="">LC method to run standard shutdown</PARAM>
+        <PARAM isPassword="false" key="Standard.Shutdown.MSMethod" value="C:\XCalibur\Methods\Automated\shutdown.meth">MS method to run standard shutdown</PARAM>
+        <PARAM isPassword="false" key="Standard.Empty.VialPosition" value="p1e8">empty vial position</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.Server" value="proteome">filemaker server for sample queue</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.Port" value="666">filemaker server port; default 666</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.User" value="automation">filemaker server username</PARAM>
+        <PARAM isPassword="true" key="FM.SampleQueue.Passwd" value="NotTelling">filemaker server password</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.DB" value="sample%20queue">filemaker database name. replace white space with %20</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.ODBCDriver" value="FileMaker ODBC">filemaker server 11 odbc driver name</PARAM>
+        <PARAM isPassword="false" key="--FM.SampleQueue.ODBCDriver" value="DataDirect 32-BIT SequeLink 5.5">filemaker server 10 or older, odbc driver name</PARAM>
+        <PARAM isPassword="false" key="Method.SavedLocation" value="C:\Chem32\1\METHODS">when printing and saving method files, this is the location where those files go</PARAM>
+        <PARAM isPassword="false" key="Seqeuence.SavedLocation" value="C:\Chem32\1\SEQUENCE">when printing and saving sequence files, this is the location where those files go</PARAM>
+        <PARAM isPassword="false" key="SMS_Emergency" value="james_clifton@brown.edu">emergency sms</PARAM>
+        <PARAM isPassword="false" key="Default.NotifySound" value="C:\WINDOWS\Media\notify.wav">play sound</PARAM>
+        <PARAM isPassword="false" key="Pump.StatusFolder" value="C:\STATUS">folder that contains pump status code; no tailing slash!</PARAM>
+        <PARAM isPassword="false" key="QualBrowser.Path" value="C:\xcalibur\system\programs\QualBrowser.exe">program to open raw file</PARAM>
+        <PARAM isPassword="false" key="PumpComm.local.IP" value="127.0.0.1">local IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.local.Port" value="9100">local port, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.p1.IP" value="127.0.0.1">pump1 IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.p2.IP" value="">pump2 IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="ScreenRange" value="-1280,0,3200,1200">screen capture size: top left coordinate x, y, width, height</PARAM>
+        <PARAM isPassword="false" key="REMOTE_PATH" value="\\ltft2.biomed.brown.edu\data">----deprecated----   name of shared folder seen by other computer, more specifically, the computer running 'autosearch.exe'.</PARAM>
+    </GROUP>
+	<GROUP NAME="client">
+        <PARAM isPassword="false" key="CLIENT_TAG" value="kyu1">client's UNIQUE identity, as set previously</PARAM>
+        <PARAM isPassword="false" key="CLIENT_HOST" value="127.0.0.1">hostname for this client computer</PARAM>
+        <PARAM isPassword="false" key="LOCAL_PATH" value="C:\data\111709">folders where raw data files are stored, this parameter is used for generating the file path on the remote backup server</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.Server" value="proteome.biomed.brown.edu">filemaker server for sample queue</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.Port" value="666">filemaker server port; default 666</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.User" value="automation">filemaker server username</PARAM>
+        <PARAM isPassword="true" key="FM.SampleQueue.Passwd" value="NotTelling">filemaker server password</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.DB" value="sample%20queue">filemaker database name. replace white space with %20</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.ODBCDriver" value="FileMaker ODBC">filemaker server 11 odbc driver name</PARAM>
+        <PARAM isPassword="false" key="---FM.SampleQueue.ODBCDriver" value="DataDirect 32-BIT SequeLink 5.5">filemaker server 10 or older, odbc driver name</PARAM>
+        <PARAM isPassword="false" key="MSMethodFolder" value="C:\Xcalibur\methods\Automated">MS method folder; for instrument control center</PARAM>
+        <PARAM isPassword="false" key="HPLCGradientFolder" value="">HPLC gradient method folder; for instrument control center</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Server" value="">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Port" value="">MySQL database server port</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.User" value="">MySQL database serveruser</PARAM>
+        <PARAM isPassword="true" key="MySQL.InfoDB.Passwd" value="NotTelling">MySQL database server password</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.DB" value="">MySQL database server database name</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.ODBCDriver" value="">MySQL database ODBC driver name</PARAM>
+        <PARAM isPassword="false" key="Pump1_Handler" value="">Window title of pump 1 control software</PARAM>
+        <PARAM isPassword="false" key="Pump2_Handler" value="">Window title of pump 2 control software</PARAM>
+        <PARAM isPassword="false" key="MassSpec_Handler" value="">Window title of mass spec control software</PARAM>
+        <PARAM isPassword="false" key="Sample.RP.LCMethod" value="">LC method to run reverse phase sample</PARAM>
+        <PARAM isPassword="false" key="Sample.RP.MSMethod" value="">MS method to run reverse phase sample</PARAM>
+        <PARAM isPassword="false" key="Sample.IMAC.LCMethod" value="">LC method to run IMAC sample</PARAM>
+        <PARAM isPassword="false" key="Sample.IMAC.MSMethod" value="">MS method to run IMAC sample</PARAM>
+        <PARAM isPassword="false" key="Standard.PeakPark.LCMethod" value="">LC method to run standard peak park test</PARAM>
+        <PARAM isPassword="false" key="Standard.PeakPark.MSMethod" value="">MS method to run peak park</PARAM>
+        <PARAM isPassword="false" key="Standard.RP.LCMethod" value="">LC method to run standard reverse phase test</PARAM>
+        <PARAM isPassword="false" key="Standard.RP.MSMethod" value="">MS method to run standard reverse phase test</PARAM>
+        <PARAM isPassword="false" key="Standard.Shutdown.LCMethod" value="">LC method to run standard shutdown</PARAM>
+        <PARAM isPassword="false" key="Standard.Shutdown.MSMethod" value="">MS method to run standard shutdown</PARAM>
+        <PARAM isPassword="false" key="Standard.Empty.VialPosition" value="">empty vial position</PARAM>
+        <PARAM isPassword="false" key="Method.SavedLocation" value="">when printing and saving method files, this is the location where those files go</PARAM>
+        <PARAM isPassword="false" key="Seqeuence.SavedLocation" value="">when printing and saving sequence files, this is the location where those files go</PARAM>
+        <PARAM isPassword="false" key="SMS_Emergency" value="">emergency sms</PARAM>
+        <PARAM isPassword="false" key="Default.NotifySound" value="">play sound</PARAM>
+        <PARAM isPassword="false" key="Pump.StatusFolder" value="">folder that contains pump status code; no tailing slash!</PARAM>
+        <PARAM isPassword="false" key="QualBrowser.Path" value="">program to open raw file</PARAM>
+        <PARAM isPassword="false" key="PumpComm.local.IP" value="">local IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.local.Port" value="">local port, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.p1.IP" value="">pump1 IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.p2.IP" value="">pump2 IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="ScreenRange" value="">screen capture size: top left coordinate x, y, width, height</PARAM>
+        <PARAM isPassword="false" key="REMOTE_PATH" value="\\ltft2.biomed.brown.edu\Data2">----deprecated----   name of shared folder seen by other computer, more specifically, the computer running 'autosearch.exe'.</PARAM>
+    </GROUP>
+<GROUP NAME="client">
+        <PARAM isPassword="false" key="CLIENT_TAG" value="lft2">client's UNIQUE identity, as set previously</PARAM>
+        <PARAM isPassword="false" key="CLIENT_HOST" value="ltft2">hostname for this client computer</PARAM>
+        <PARAM isPassword="false" key="SAMPLE_LIST" value="finishedSampleList-Salomon.txt">This is the name of the file holding the sample names to be sent down the pipeline</PARAM>
+        <PARAM isPassword="false" key="LOCAL_PATH" value="F:\Xcalibur\data">folders where raw data files are stored, this parameter is used for generating the file path on the remote backup server</PARAM>
+        <PARAM isPassword="false" key="HPLCGradientFolder" value="C:\Chem32\1\METHODS">HPLC gradient method folder; for instrument control center</PARAM>
+        <PARAM isPassword="false" key="MSMethodFolder" value="C:\Thermo\Instruments\LTQ\methods\Automated">MS method folder; for instrument control center</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Server" value="proteome.biomed.brown.edu">MySQL database server to store BSA, Acasein data, as well as pressure profiles </PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.Port" value="666">MySQL database server port</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.User" value="automation">MySQL database serveruser</PARAM>
+        <PARAM isPassword="true" key="MySQL.InfoDB.Passwd" value="NotTelling">MySQL database server password</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.DB" value="history">MySQL database server database name</PARAM>
+        <PARAM isPassword="false" key="MySQL.InfoDB.ODBCDriver" value="MySQL ODBC 3.51 Driver">MySQL database ODBC driver name</PARAM>
+        <PARAM isPassword="false" key="Pump1_Handler" value="Instrument 1 (online)">Window title of pump 1 control software</PARAM>
+        <PARAM isPassword="false" key="Pump2_Handler" value="Instrument 1 (online)">Window title of pump 2 control software</PARAM>
+        <PARAM isPassword="false" key="MassSpec_Handler" value="Thermo Xcalibur Roadmap">Window title of mass spec control software</PARAM>
+        <PARAM isPassword="false" key="RAW_MIN_SIZE" value="20MB">Minimum required size of RAW files, or queue pauses</PARAM>
+        <PARAM isPassword="false" key="Sample.RP.LCMethod" value="C:\Chem32\1\METHODS\AUTO60SHALLOW.M">LC method to run reverse phase sample</PARAM>
+        <PARAM isPassword="false" key="Sample.RP.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\dd10_auto60shallow_FTMSLTMSMS.meth">MS method to run reverse phase sample</PARAM>
+        <PARAM isPassword="false" key="Sample.IMAC.LCMethod" value="C:\Chem32\1\METHODS\A_AUTO30RP.M">LC method to run IMAC sample</PARAM>
+        <PARAM isPassword="false" key="Sample.IMAC.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\dd10_auto60shallow_FTMSLTMSMS.meth">MS method to run IMAC sample</PARAM>
+        <PARAM isPassword="false" key="Standard.PeakPark.LCMethod" value="C:\Chem32\1\METHODS\A_AUTO30NR.M">LC method to run standard peak park test</PARAM>
+        <PARAM isPassword="false" key="Standard.PeakPark.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\FTMS_50min.meth">MS method to run peak park</PARAM>
+        <PARAM isPassword="false" key="Standard.RP.LCMethod" value="C:\Chem32\1\METHODS\A_AUTO17NR.M">LC method to run standard reverse phase test</PARAM>
+        <PARAM isPassword="false" key="Standard.RP.MSMethod" value="C:\Thermo\Instruments\LTQ\methods\Automated\dd1_37min_FTMSLTMSMS.meth">MS method to run standard reverse phase test</PARAM>
+        <PARAM isPassword="false" key="Standard.Shutdown.LCMethod" value="">LC method to run standard shutdown</PARAM>
+        <PARAM isPassword="false" key="Standard.Shutdown.MSMethod" value="C:\XCalibur\Methods\Automated\shutdown.meth">MS method to run standard shutdown</PARAM>
+        <PARAM isPassword="false" key="Standard.Empty.VialPosition" value="p1e8">empty vial position</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.Server" value="proteome.biomed.brown.edu">filemaker server for sample queue</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.Port" value="666">filemaker server port; default....</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.User" value="automation">filemaker server username</PARAM>
+        <PARAM isPassword="true" key="FM.SampleQueue.Passwd" value="NotTelling">filemaker server password</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.DB" value="sample%20queue">filemaker database name. replace white space with %20</PARAM>
+        <PARAM isPassword="false" key="FM.SampleQueue.ODBCDriver" value="FileMaker ODBC">filemaker server 11 odbc driver name</PARAM>
+        <PARAM isPassword="false" key="--FM.SampleQueue.ODBCDriver" value="DataDirect 32-BIT SequeLink 5.5">filemaker server 10 or older, odbc driver name</PARAM>
+        <PARAM isPassword="false" key="Method.SavedLocation" value="C:\Chem32\1\METHODS">when printing and saving method files, this is the location where those files go</PARAM>
+        <PARAM isPassword="false" key="Seqeuence.SavedLocation" value="C:\Chem32\1\SEQUENCE">when printing and saving sequence files, this is the location where those files go</PARAM>
+        <PARAM isPassword="false" key="SMS_Emergency" value="james_clifton@brown.edu">emergency sms</PARAM>
+        <PARAM isPassword="false" key="Default.NotifySound" value="C:\WINDOWS\Media\notify.wav">play sound</PARAM>
+        <PARAM isPassword="false" key="Pump.StatusFolder" value="C:\STATUS">folder that contains pump status code; no tailing slash!</PARAM>
+        <PARAM isPassword="false" key="QualBrowser.Path" value="C:\xcalibur\system\programs\QualBrowser.exe">program to open raw file</PARAM>
+        <PARAM isPassword="false" key="PumpComm.local.IP" value="127.0.0.1">local IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.local.Port" value="666">local port, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.p1.IP" value="127.0.0.1">pump1 IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="PumpComm.p2.IP" value="">pump2 IP, pump communication</PARAM>
+        <PARAM isPassword="false" key="ScreenRange" value="-1280,0,3200,1200">screen capture size: top left coordinate x, y, width, height</PARAM>
+        <PARAM isPassword="false" key="REMOTE_PATH" value="\\ltft2.biomed.brown.edu\Data2">----deprecated----   name of shared folder seen by other computer, more specifically, the computer running 'autosearch.exe'.</PARAM>
+    </GROUP>
+</GROUPS>
