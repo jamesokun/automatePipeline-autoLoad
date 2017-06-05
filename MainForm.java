@@ -59,10 +59,6 @@ import modules.Params;
 import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.platform.win32.User32;
 
-/**
- * @authors jbelmont, njooma
- *
- */
 @SuppressWarnings("serial")
 public class MainForm extends JFrame implements Form {
 
@@ -992,9 +988,6 @@ public class MainForm extends JFrame implements Form {
 	 * This class sets the _isPaused boolean to 
 	 * either true or false depending on the
 	 * paused state.
-	 * 
-	 * @author njooma
-	 *
 	 */
 	private class PauseListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
