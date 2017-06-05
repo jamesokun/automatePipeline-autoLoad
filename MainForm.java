@@ -684,8 +684,7 @@ public class MainForm extends JFrame implements Form {
 					pb.redirectErrorStream(true);
 					Process p = pb.inheritIO().start();
 					p.waitFor();
-						//get Process to string for log
-					// Andy sez: This doesn't work as intended, tries to print object instead of string
+					//get Process to string for log
 					cmd = p.toString();
 					this.log("            "+cmd);
 					//	quantPID[i] = new ProcessBuilder(Paths.get(_appPath, "AQSILAC.exe").toString(), "$a=TRUE", "$c="+cfg.toString(), "$r="+raw.toString(), "$s="+splitDirs[i], "$o="+silacDir.toString(), "$f=off").start();
