@@ -1,6 +1,3 @@
-/**
- * 
- */
 package autoLoad;
 
 import java.io.BufferedReader;
@@ -12,10 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-/**
- * @authors jbelmont, njooma
- *
- */
 public class ASClientThread extends Thread {
 	
 	private Socket _clientSocket;
