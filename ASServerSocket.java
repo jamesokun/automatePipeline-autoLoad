@@ -1,6 +1,3 @@
-/**
- * 
- */
 package autoLoad;
 
 import java.io.IOException;
@@ -10,10 +7,6 @@ import javax.swing.JOptionPane;
 
 import modules.Params;
 
-/**
- * @authors jbelmont, njooma
- *
- */
 public class ASServerSocket extends Thread {
 
 	private MainForm _mainForm;
