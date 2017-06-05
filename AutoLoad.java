@@ -1,11 +1,5 @@
 package autoLoad;
 
-/**
- * Starts the application.
- * 
- * @authors jbelmont, njooma
- *
- */
 public class AutoLoad {
 
 	public AutoLoad() {
