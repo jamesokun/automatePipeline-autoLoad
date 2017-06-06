@@ -566,7 +566,7 @@ public class MainForm extends JFrame implements Form {
 		p.destroy();		
 		System.out.println("OUTFileSelector exit value: "+p.exitValue());
 	}
-	
+	//RData is a saved R workspace
 	private void setupLogisticModel() {
 		this.pause("Setting up logistic model");
 		String model;
@@ -585,12 +585,14 @@ public class MainForm extends JFrame implements Form {
 	}
 	
 	private void phosQuant() throws IOException, InterruptedException, AutoLoadException {
+		//Calculation of the A score 
 		this.pause("PhosLocalization");
 		Path tempDir = Paths.get(_params.getGlobalParam("LOADER.TempFolder", "C:\\temp"));
 		Path msconv = Paths.get(_params.getGlobalParam("LOADER.msconvert", "C:\\Program Files\\ProteoWizard\\msconvert.exe"));
 		int numDTA = Paths.get(tempDir.toString(), "dta").toFile().list().length;
 		this.log("Looking for dtas in " + Paths.get(tempDir.toString(), "dta"));
 		if (numDTA > 0) {
+			//PhosLocalization.bat just runs PhosLocalization.jar
 			String cmd = "cmd /C "+Paths.get(_appPath, "PhosLocalization.bat").toString();
 			System.out.println("        "+cmd);
 			Process pPhos = new ProcessBuilder("cmd", "/C", Paths.get(_appPath, "PhosLocalization.bat").toString()).start();
