@@ -61,7 +61,6 @@ import com.sun.jna.platform.win32.User32;
 
 @SuppressWarnings("serial")
 public class MainForm extends JFrame implements Form {
-
 	private boolean _isBusy=false, _isPaused=false, _quant=true;
 	private JPanel _mainPanel;
 	private JTextArea _statusArea;
@@ -71,7 +70,8 @@ public class MainForm extends JFrame implements Form {
 	private java.awt.Color _mainColor;
 	private int _cores;
 	private Vector<String> _samplesToRun = new Vector<String>();
-	
+	//sets a lot of GUI parameters
+	//only real difference between this GUI and the others is that it has to flash red
 	public MainForm() {
 		//GUI Basics
 		super("AutoLoad");
